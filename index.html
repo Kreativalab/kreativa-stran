@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kreativa Lab — Marketinška agencija</title>
+    <meta name="description" content="Kreativa Lab je marketinška agencija, ki podjetjem pomaga rasti z digitalnim marketingom, kreativnimi kampanjami in prodajnimi lijaki.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --bg-light: #f8fafc;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: #ffffff;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem 5rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 640px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .cta {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .cta:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .cta:active {
+            transform: scale(0.98);
+        }
+
+        /* Services */
+        .services {
+            background-color: var(--bg-light);
+            padding: 5rem 2rem;
+        }
+
+        .services-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 1.125rem;
+            margin-bottom: 3rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(37, 99, 235, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* About */
+        .about {
+            padding: 5rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about p {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        /* Contact */
+        .contact {
+            background-color: var(--text-dark);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .contact p {
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+            font-size: 1.125rem;
+        }
+
+        .contact .cta {
+            background-color: white;
+            color: var(--text-dark);
+        }
+
+        .contact .cta:hover {
+            background-color: #f1f5f9;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+            }
+            .hero {
+                padding: 4rem 1.5rem 3rem;
+            }
+            .services, .contact {
+                padding: 3rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Kreativa<span>Lab</span></div>
+            <ul class="nav-links">
+                <li><a href="#storitve">Storitve</a></li>
+                <li><a href="#o-nas">O nas</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Marketing, ki <span>prodaja</span>.</h1>
+        <p>Kreativa Lab je digitalna marketinška agencija, ki podjetjem pomaga rasti s strateškimi kampanjami, prodajnimi lijaki in kreativnimi vsebinami.</p>
+        <a href="#kontakt" class="cta">Rezerviraj brezplačni klic</a>
+    </section>
+
+    <section class="services" id="storitve">
+        <div class="services-inner">
+            <h2 class="section-title">Naše storitve</h2>
+            <p class="section-subtitle">Vse kar potrebuješ za rast tvojega posla na enem mestu.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3>Meta & Google oglaševanje</h3>
+                    <p>Plačljive kampanje na Facebooku, Instagramu in Googlu, ki prinašajo merljive rezultate.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚀</div>
+                    <h3>Prodajni lijaki</h3>
+                    <p>Sistemi za pridobivanje strank — od landing page-a do email avtomatizacij.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✍️</div>
+                    <h3>Copywriting</h3>
+                    <p>Besedila, ki govorijo jezik tvoje publike in jih prepričajo v nakup.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Analitika & optimizacija</h3>
+                    <p>Sledenje, A/B testiranje in optimizacija kampanj za večji ROI.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>Kreativa & video</h3>
+                    <p>Vizualne vsebine in video produkcija, ki ustavlja prste pri scrollanju.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📧</div>
+                    <h3>Email marketing</h3>
+                    <p>Welcome sekvence, newsletterji in avtomatizacije, ki gradijo zveste stranke.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="o-nas">
+        <h2 class="section-title">O Kreativa Lab</h2>
+        <p>Smo ekipa marketingašev, kreativcev in strategov, ki verjamemo, da je dober marketing kombinacija podatkov, kreativnosti in zdrave pameti.</p>
+        <p>Delamo s podjetji, ki želijo prerasti »objavljanje vsebin za objavljanje« in zgraditi sistem, ki dejansko prodaja.</p>
+    </section>
+
+    <section class="contact" id="kontakt">
+        <h2>Pripravljen za rast?</h2>
+        <p>Rezerviraj brezplačni 30-minutni klic. Pogledamo tvojo situacijo in pripravimo načrt.</p>
+        <a href="mailto:hello@kreativalab.si" class="cta">Pošlji sporočilo</a>
+    </section>
+
+    <footer>
+        <p>© 2026 Kreativa Lab. Vse pravice pridržane.</p>
+    </footer>
+</body>
+</html>
