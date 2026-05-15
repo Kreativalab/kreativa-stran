@@ -236,12 +236,18 @@
             transform: translateY(-4px);
         }
 
-        .work-image img {
+        .work-image img,
+        .work-image video {
             width: 100%;
             height: auto;
             max-height: 480px;
             object-fit: contain;
             display: block;
+        }
+
+        .work-image video {
+            background: var(--ink);
+            cursor: pointer;
         }
 
         /* Placeholder pattern */
@@ -577,6 +583,46 @@
                 <div class="category-header">
                     <div class="category-title">
                         <span class="category-number">04</span>
+                        AI video oglasi
+                    </div>
+                    <div class="category-count">2 projekta</div>
+                </div>
+                <div class="work-grid">
+                    <a class="work-item">
+                        <div class="work-image">
+                            <video autoplay loop muted playsinline controls preload="metadata">
+                                <source src="video/202605122109%20(2).mp4" type="video/mp4">
+                                Vaš brskalnik ne podpira video predvajanja.
+                            </video>
+                        </div>
+                        <div class="work-meta">
+                            <span>AI video oglas</span>
+                            <span>2026</span>
+                        </div>
+                        <h3 class="work-title">Oglas v gibanju</h3>
+                        <p class="work-desc">AI generiran oglaševalski video za social media — pripravljen za Meta in TikTok formate. Od zasnove do gotovega oglasa v dveh dneh.</p>
+                    </a>
+                    <a class="work-item">
+                        <div class="work-image">
+                            <video autoplay loop muted playsinline controls preload="metadata">
+                                <source src="video/hf_20260513_103139_a4becf8e-9480-4132-8391-01c1b8ee0ea2.mp4" type="video/mp4">
+                                Vaš brskalnik ne podpira video predvajanja.
+                            </video>
+                        </div>
+                        <div class="work-meta">
+                            <span>AI video oglas</span>
+                            <span>2026</span>
+                        </div>
+                        <h3 class="work-title">Brand v sekundah</h3>
+                        <p class="work-desc">Kratka oglaševalska zgodba, ki ujame pozornost v prvih treh sekundah — ključno za uspešnost na social media platformah.</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">
+                    <div class="category-title">
+                        <span class="category-number">05</span>
                         Kreativne kompozicije
                     </div>
                     <div class="category-count">3 projekti</div>
