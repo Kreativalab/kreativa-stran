@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cenik — Kreativa Lab</title>
-    <meta name="description" content="Transparenten cenik storitev Kreativa Lab — AI fotografija, video oglasi, landing pages in vodenje marketinga.">
+    <meta name="description" content="Transparenten cenik storitev Kreativa Lab — AI fotografija, video oglasi in mesečni paketi.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
@@ -156,13 +156,193 @@
         .page-hero p {
             font-size: 1.15rem;
             color: var(--ink-muted);
-            max-width: 600px;
+            max-width: 620px;
             line-height: 1.5;
         }
 
-        /* Pricing list */
+        /* Packages */
+        .packages {
+            padding: 5rem 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .packages-headline {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.75rem;
+        }
+
+        .packages-headline em { font-style: italic; font-weight: 400; }
+
+        .packages-intro {
+            color: var(--ink-muted);
+            font-size: 1.05rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .package {
+            border: 1px solid var(--line);
+            padding: 2rem 1.75rem 2.25rem;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg);
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .package:hover {
+            transform: translateY(-4px);
+            box-shadow: 4px 4px 0 var(--ink);
+        }
+
+        .package.featured {
+            background: var(--ink);
+            color: var(--bg);
+            border-color: var(--ink);
+        }
+
+        .package.featured:hover {
+            box-shadow: 4px 4px 0 var(--accent);
+        }
+
+        .package-badge {
+            position: absolute;
+            top: -1px;
+            right: 1.5rem;
+            background: var(--accent);
+            color: var(--bg);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.75rem;
+        }
+
+        .package-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+            opacity: 0.7;
+        }
+
+        .package-price {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .package-amount {
+            font-family: 'Fraunces', serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+
+        .package-unit {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.6;
+        }
+
+        .package-divider {
+            height: 1px;
+            background: currentColor;
+            opacity: 0.2;
+            margin: 1.5rem 0;
+        }
+
+        .package-includes {
+            list-style: none;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .package-includes li {
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: baseline;
+            gap: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .package-includes li::before {
+            content: "→";
+            font-family: 'Fraunces', serif;
+            font-weight: 600;
+            opacity: 0.6;
+            flex-shrink: 0;
+        }
+
+        .package-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            background: transparent;
+            color: var(--ink);
+            border: 1px solid var(--ink);
+            padding: 0.9rem 1.25rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .package-cta:hover {
+            background: var(--ink);
+            color: var(--bg);
+        }
+
+        .package.featured .package-cta {
+            background: var(--bg);
+            color: var(--ink);
+            border-color: var(--bg);
+        }
+
+        .package.featured .package-cta:hover {
+            background: var(--accent);
+            color: var(--bg);
+            border-color: var(--accent);
+        }
+
+        /* Single services / pricing list */
         .pricing {
             padding: 5rem 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .pricing-headline {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.75rem;
+        }
+
+        .pricing-headline em { font-style: italic; font-weight: 400; }
+
+        .pricing-intro {
+            color: var(--ink-muted);
+            font-size: 1.05rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
         }
 
         .price-list {
@@ -175,7 +355,7 @@
             grid-template-columns: 60px 1fr 200px;
             gap: 2rem;
             align-items: center;
-            padding: 2.5rem 0;
+            padding: 2.25rem 0;
             border-bottom: 1px solid var(--line);
             transition: padding 0.3s, background 0.3s;
         }
@@ -192,18 +372,14 @@
             color: var(--ink-muted);
         }
 
-        .price-content {
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-        }
+        .price-content { display: flex; flex-direction: column; gap: 0.4rem; }
 
         .price-name {
             font-family: 'Fraunces', serif;
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             font-weight: 600;
             letter-spacing: -0.02em;
-            line-height: 1.1;
+            line-height: 1.15;
         }
 
         .price-desc {
@@ -213,26 +389,16 @@
             max-width: 500px;
         }
 
-        .price-includes {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-top: 0.4rem;
-        }
-
-        .price-tag {
+        .price-meta {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--ink);
-            border: 1px solid var(--ink);
-            padding: 0.25rem 0.6rem;
+            color: var(--ink-muted);
+            margin-top: 0.3rem;
         }
 
-        .price-value {
-            text-align: right;
-        }
+        .price-value { text-align: right; }
 
         .price-prefix {
             font-family: 'JetBrains Mono', monospace;
@@ -254,12 +420,20 @@
 
         .price-unit {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
             color: var(--ink-muted);
             display: block;
             margin-top: 0.3rem;
+        }
+
+        .price-custom {
+            font-family: 'Fraunces', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            font-weight: 400;
+            color: var(--ink);
         }
 
         /* Notes */
@@ -275,11 +449,7 @@
             gap: 3rem;
         }
 
-        .note {
-            display: flex;
-            flex-direction: column;
-            gap: 0.6rem;
-        }
+        .note { display: flex; flex-direction: column; gap: 0.6rem; }
 
         .note-label {
             font-family: 'JetBrains Mono', monospace;
@@ -367,13 +537,17 @@
             align-items: center;
         }
 
+        @media (max-width: 900px) {
+            .packages-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+        }
+
         @media (max-width: 768px) {
             .container { padding: 0 1.5rem; }
             .topbar-inner, .footer-inner { padding: 0 1.5rem; }
             nav { padding: 1.5rem; }
             .nav-links { display: none; }
             .page-hero { padding: 3rem 0; }
-            .pricing { padding: 3rem 0; }
+            .packages, .pricing { padding: 3rem 0; }
             .price-item {
                 grid-template-columns: 40px 1fr;
                 gap: 1rem;
@@ -417,103 +591,123 @@
         <div class="container">
             <div class="section-label"><span>Cenik · 2026</span></div>
             <h1>Transparenten cenik. <em>Brez presenečenj.</em></h1>
-            <p>Vsi projekti so prilagojeni — spodaj so začetne cene, da imaš orientacijo. Točna ponudba po brezplačnem klicu.</p>
+            <p>Mesečni paketi za podjetja, ki rabijo stalno produkcijo vsebin. Posamezne storitve za enkratne projekte. Vse cene brez DDV.</p>
         </div>
     </section>
 
+    <!-- MESEČNI PAKETI -->
+    <section class="packages">
+        <div class="container">
+            <div class="section-label"><span>01 // Mesečni paketi</span></div>
+            <h2 class="packages-headline">Stalna produkcija. <em>Predvidljiv strošek.</em></h2>
+            <p class="packages-intro">Pridobi vsak mesec sveže AI vsebine za svoj brand — brez dolgotrajne produkcije in stresov.</p>
+
+            <div class="packages-grid">
+
+                <div class="package">
+                    <span class="package-name">Starter</span>
+                    <div class="package-price">
+                        <span class="package-amount">€79</span>
+                        <span class="package-unit">/ mesec</span>
+                    </div>
+                    <div class="package-divider"></div>
+                    <ul class="package-includes">
+                        <li>5× AI produktna fotografija</li>
+                        <li>Dostava v 3 delovnih dneh</li>
+                        <li>2 revizji vključeni</li>
+                    </ul>
+                    <a href="https://calendly.com/tadejsus/new-meeting" target="_blank" rel="noopener noreferrer" class="package-cta">
+                        Izberi Starter <span>→</span>
+                    </a>
+                </div>
+
+                <div class="package featured">
+                    <span class="package-badge">Najbolj priljubljen</span>
+                    <span class="package-name">Growth</span>
+                    <div class="package-price">
+                        <span class="package-amount">€149</span>
+                        <span class="package-unit">/ mesec</span>
+                    </div>
+                    <div class="package-divider"></div>
+                    <ul class="package-includes">
+                        <li>5× AI produktna fotografija</li>
+                        <li>2× video reel za social</li>
+                        <li>Dostava v 3 delovnih dneh</li>
+                        <li>Neomejene revizije</li>
+                    </ul>
+                    <a href="https://calendly.com/tadejsus/new-meeting" target="_blank" rel="noopener noreferrer" class="package-cta">
+                        Izberi Growth <span>→</span>
+                    </a>
+                </div>
+
+                <div class="package">
+                    <span class="package-name">Pro</span>
+                    <div class="package-price">
+                        <span class="package-amount">€279</span>
+                        <span class="package-unit">/ mesec</span>
+                    </div>
+                    <div class="package-divider"></div>
+                    <ul class="package-includes">
+                        <li>10× AI produktna fotografija</li>
+                        <li>4× video reel za social</li>
+                        <li>1× oglaševalski video</li>
+                        <li>Prioritetna dostava</li>
+                        <li>Neomejene revizije</li>
+                    </ul>
+                    <a href="https://calendly.com/tadejsus/new-meeting" target="_blank" rel="noopener noreferrer" class="package-cta">
+                        Izberi Pro <span>→</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- POSAMEZNE STORITVE -->
     <section class="pricing">
         <div class="container">
+            <div class="section-label"><span>02 // Posamezne storitve</span></div>
+            <h2 class="pricing-headline">Enkratni projekti. <em>Brez naročnine.</em></h2>
+            <p class="pricing-intro">Za teste, sezonske kampanje ali ko rabiš samo eno stvar — brez mesečne zaveze.</p>
+
             <ul class="price-list">
 
                 <li class="price-item">
                     <div class="price-number">01</div>
                     <div class="price-content">
                         <h3 class="price-name">AI produktna fotografija</h3>
-                        <p class="price-desc">Profesionalne fotografije izdelkov, ustvarjene z AI orodji. Vključuje koncept, generiranje in finalno obdelavo.</p>
-                        <div class="price-includes">
-                            <span class="price-tag">5+ fotografij</span>
-                            <span class="price-tag">2 revizji</span>
-                            <span class="price-tag">Hi-res dostava</span>
-                        </div>
+                        <p class="price-desc">3 profesionalne AI fotografije izdelka v premium kvaliteti.</p>
+                        <p class="price-meta">⏱ Dostava v 3 delovnih dneh</p>
                     </div>
                     <div class="price-value">
-                        <span class="price-prefix">od</span>
-                        <span class="price-amount">€299</span>
-                        <span class="price-unit">/ paket</span>
+                        <span class="price-amount">€50</span>
+                        <span class="price-unit">/ 3 fotografije</span>
                     </div>
                 </li>
 
                 <li class="price-item">
                     <div class="price-number">02</div>
                     <div class="price-content">
-                        <h3 class="price-name">AI video oglasi</h3>
-                        <p class="price-desc">Kratke video reklame (15–60s) za Meta, TikTok in YouTube. Vključuje scenarij, generiranje, montažo in eksport za vse platforme.</p>
-                        <div class="price-includes">
-                            <span class="price-tag">3 video različice</span>
-                            <span class="price-tag">Scenarij</span>
-                            <span class="price-tag">Vse formati</span>
-                        </div>
+                        <h3 class="price-name">AI video — variacije oglasa</h3>
+                        <p class="price-desc">3 video različice istega oglasa za A/B testiranje na Meta in TikToku.</p>
+                        <p class="price-meta">⏱ Dostava v 5 delovnih dneh</p>
                     </div>
                     <div class="price-value">
-                        <span class="price-prefix">od</span>
-                        <span class="price-amount">€499</span>
-                        <span class="price-unit">/ paket</span>
+                        <span class="price-amount">€249</span>
+                        <span class="price-unit">/ 3 variacije</span>
                     </div>
                 </li>
 
                 <li class="price-item">
                     <div class="price-number">03</div>
                     <div class="price-content">
-                        <h3 class="price-name">Marketing svetovanje in vodenje</h3>
-                        <p class="price-desc">Strateški svet IN izvedba. Mesečni retainer vključuje audit, strategijo, kampanje in mesečno poročanje.</p>
-                        <div class="price-includes">
-                            <span class="price-tag">Audit</span>
-                            <span class="price-tag">Strategija</span>
-                            <span class="price-tag">Vodenje kampanj</span>
-                            <span class="price-tag">Poročilo</span>
-                        </div>
+                        <h3 class="price-name">AI oglaševalski video</h3>
+                        <p class="price-desc">2 kratka oglaševalska videa za social platforme — pripravljena za objavo.</p>
+                        <p class="price-meta">⏱ Dostava v 5 delovnih dneh</p>
                     </div>
                     <div class="price-value">
-                        <span class="price-prefix">od</span>
-                        <span class="price-amount">€1.500</span>
-                        <span class="price-unit">/ mesec</span>
-                    </div>
-                </li>
-
-                <li class="price-item">
-                    <div class="price-number">04</div>
-                    <div class="price-content">
-                        <h3 class="price-name">Landing page</h3>
-                        <p class="price-desc">Prodajna stran z visoko konverzijo — od copy-a do dizajna do tehnične izvedbe. Pripravljena za oglaševanje v 14 dneh.</p>
-                        <div class="price-includes">
-                            <span class="price-tag">Copy</span>
-                            <span class="price-tag">Design</span>
-                            <span class="price-tag">Razvoj</span>
-                            <span class="price-tag">Tracking</span>
-                        </div>
-                    </div>
-                    <div class="price-value">
-                        <span class="price-prefix">od</span>
-                        <span class="price-amount">€1.490</span>
-                        <span class="price-unit">/ projekt</span>
-                    </div>
-                </li>
-
-                <li class="price-item">
-                    <div class="price-number">05</div>
-                    <div class="price-content">
-                        <h3 class="price-name">Spletna stran</h3>
-                        <p class="price-desc">Profesionalna predstavitvena stran — do 7 podstrani, hitra, optimizirana za Google, custom dizajn po brandu.</p>
-                        <div class="price-includes">
-                            <span class="price-tag">Do 7 podstrani</span>
-                            <span class="price-tag">SEO osnova</span>
-                            <span class="price-tag">CMS po želji</span>
-                        </div>
-                    </div>
-                    <div class="price-value">
-                        <span class="price-prefix">od</span>
-                        <span class="price-amount">€2.490</span>
-                        <span class="price-unit">/ projekt</span>
+                        <span class="price-amount">€100</span>
+                        <span class="price-unit">/ 2 videa</span>
                     </div>
                 </li>
 
@@ -521,13 +715,60 @@
         </div>
     </section>
 
+    <!-- PO DOGOVORU -->
+    <section class="pricing">
+        <div class="container">
+            <div class="section-label"><span>03 // Po dogovoru</span></div>
+            <h2 class="pricing-headline">Večji projekti. <em>Cena po obsegu.</em></h2>
+            <p class="pricing-intro">Storitve, kjer je obseg vedno drugačen — po brezplačnem klicu pripravimo natančno ponudbo.</p>
+
+            <ul class="price-list">
+
+                <li class="price-item">
+                    <div class="price-number">04</div>
+                    <div class="price-content">
+                        <h3 class="price-name">Marketing svetovanje in vodenje</h3>
+                        <p class="price-desc">Strateški svet IN izvedba — audit, strategija, kampanje, mesečno poročanje.</p>
+                    </div>
+                    <div class="price-value">
+                        <span class="price-custom">Po dogovoru</span>
+                    </div>
+                </li>
+
+                <li class="price-item">
+                    <div class="price-number">05</div>
+                    <div class="price-content">
+                        <h3 class="price-name">Landing page</h3>
+                        <p class="price-desc">Prodajna stran z visoko konverzijo — od copy-a do dizajna do tehnične izvedbe.</p>
+                    </div>
+                    <div class="price-value">
+                        <span class="price-custom">Po dogovoru</span>
+                    </div>
+                </li>
+
+                <li class="price-item">
+                    <div class="price-number">06</div>
+                    <div class="price-content">
+                        <h3 class="price-name">Spletna stran</h3>
+                        <p class="price-desc">Profesionalna predstavitvena stran — design po brandu, optimizirana za Google.</p>
+                    </div>
+                    <div class="price-value">
+                        <span class="price-custom">Po dogovoru</span>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+    </section>
+
+    <!-- NOTES -->
     <section class="pricing-notes">
         <div class="container">
             <div class="notes-grid">
                 <div class="note">
                     <span class="note-label">Plačilo</span>
-                    <h3 class="note-title">50% predplačilo, 50% ob predaji</h3>
-                    <p class="note-text">Pri retainerjih plačilo mesečno, vnaprej. Sprejemamo nakazila in plačilne kartice.</p>
+                    <h3 class="note-title">Pakete plačaš mesečno vnaprej</h3>
+                    <p class="note-text">Pri posameznih projektih: 50% predplačilo, 50% ob predaji. Sprejemamo nakazila in kartice.</p>
                 </div>
                 <div class="note">
                     <span class="note-label">DDV</span>
@@ -535,14 +776,15 @@
                     <p class="note-text">Dodajamo 22% DDV. Račun izstavimo po slovenski zakonodaji.</p>
                 </div>
                 <div class="note">
-                    <span class="note-label">Custom</span>
-                    <h3 class="note-title">Imaš drugačen obseg?</h3>
-                    <p class="note-text">Vsak projekt prilagodimo. Rezerviraj brezplačni klic in pripravimo ponudbo po meri.</p>
+                    <span class="note-label">Prilagodljivost</span>
+                    <h3 class="note-title">Mesečno odpoveš kadarkoli</h3>
+                    <p class="note-text">Brez dolgoročnih pogodb. Paket lahko nadgradiš, pomanjšaš ali odpoveš ob koncu meseca.</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- CTA -->
     <section class="cta-section">
         <div class="container">
             <h2>Pripravljen za pogovor?</h2>
