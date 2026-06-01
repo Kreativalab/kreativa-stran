@@ -17,7 +17,8 @@
             --ink: #0a0a0a;
             --ink-muted: #555555;
             --line: #0a0a0a;
-            --accent: #8b1e1e;
+            --accent: #FF5C36;
+            --accent-soft: #FFE8E0;
         }
 
         ::selection { background: var(--ink); color: var(--bg); }
@@ -82,7 +83,7 @@
             line-height: 1;
         }
 
-        .logo em { font-style: italic; font-weight: 400; }
+        .logo em { font-style: italic; font-weight: 400; color: var(--accent); }
 
         .nav-links {
             display: flex;
@@ -151,6 +152,7 @@
         .page-hero h1 em {
             font-style: italic;
             font-weight: 400;
+            color: var(--accent);
         }
 
         .page-hero p {
@@ -193,8 +195,8 @@
         .category-number {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--ink-muted);
+            font-weight: 600;
+            color: var(--accent);
         }
 
         .category-count {
