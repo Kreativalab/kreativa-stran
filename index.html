@@ -146,48 +146,142 @@
             background: var(--ink);
         }
 
-        /* Hero */
+        /* Hero — Isadora style */
         .hero {
-            padding: 6rem 0 7rem;
+            position: relative;
+            padding: 3rem 0 5rem;
             border-bottom: 1px solid var(--line);
+            overflow: hidden;
         }
 
-        .hero h1 {
+        .hero-inner {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2.5rem;
+        }
+
+        .hero-visual {
+            position: absolute;
+            top: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(540px, 80vw);
+            height: 640px;
+            z-index: 1;
+            pointer-events: none;
+            background:
+                radial-gradient(ellipse at 25% 20%, rgba(196, 181, 253, 0.95) 0%, transparent 55%),
+                radial-gradient(ellipse at 75% 35%, rgba(244, 114, 182, 0.9) 0%, transparent 55%),
+                radial-gradient(ellipse at 35% 75%, rgba(252, 207, 232, 1) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 85%, rgba(167, 139, 250, 0.9) 0%, transparent 55%),
+                radial-gradient(ellipse at 15% 55%, rgba(254, 215, 170, 0.7) 0%, transparent 55%),
+                linear-gradient(135deg, #ede9fe 0%, #fce7f3 45%, #ffe4e6 75%, #fef3c7 100%);
+            filter: blur(32px) saturate(1.4);
+            border-radius: 12px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 64vh;
+            gap: 2rem;
+        }
+
+        .hero-h1 {
             font-family: 'Fraunces', serif;
-            font-size: clamp(3rem, 8vw, 6.5rem);
+            font-size: clamp(3.5rem, 11vw, 9.5rem);
             font-weight: 800;
-            letter-spacing: -0.04em;
-            line-height: 0.98;
-            margin-bottom: 2.5rem;
-            max-width: 1000px;
+            letter-spacing: -0.045em;
+            line-height: 0.9;
         }
 
-        .hero h1 em {
-            font-style: italic;
+        .hero-h1-top {
+            align-self: flex-start;
+            max-width: 65%;
+        }
+
+        .hero-h1-bottom {
+            align-self: flex-end;
+            text-align: right;
             font-weight: 400;
+            font-style: italic;
             font-variation-settings: "opsz" 144;
+            max-width: 60%;
         }
 
         .hero-bottom {
+            position: relative;
+            z-index: 2;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr auto;
             gap: 4rem;
             align-items: end;
-            padding-top: 2rem;
+            padding-top: 2.5rem;
             border-top: 1px solid var(--line);
-            margin-top: 3rem;
+            margin-top: 3.5rem;
         }
 
         .hero-bottom p {
             font-size: 1.1rem;
             color: var(--ink-muted);
-            max-width: 480px;
-            line-height: 1.5;
+            max-width: 460px;
+            line-height: 1.55;
         }
 
-        .hero-bottom .cta-wrap {
+        /* Circular CTA — Isadora style */
+        .cta-circle {
+            display: inline-flex;
+            align-items: center;
+            gap: 1.25rem;
+            text-decoration: none;
+            color: var(--ink);
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+        }
+
+        .cta-circle-ring {
+            width: 72px;
+            height: 72px;
+            min-width: 72px;
+            border-radius: 50%;
+            border: 1px solid var(--ink);
             display: flex;
-            justify-content: flex-end;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            transition: background 0.3s, color 0.3s, transform 0.3s;
+        }
+
+        .cta-circle:hover .cta-circle-ring {
+            background: var(--ink);
+            color: var(--bg);
+            transform: rotate(-12deg) scale(1.03);
+        }
+
+        .cta-circle-arrow {
+            display: block;
+            transition: transform 0.3s;
+        }
+
+        .cta-circle-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .cta-circle-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .cta-circle-sublabel {
+            font-size: 0.85rem;
+            color: var(--ink-muted);
         }
 
         /* CTA */
@@ -388,9 +482,14 @@
             .topbar-inner, .footer-inner { padding: 0 1.5rem; }
             nav { padding: 1.5rem; }
             .nav-links { display: none; }
-            .hero { padding: 4rem 0 5rem; }
-            .hero-bottom { grid-template-columns: 1fr; gap: 2rem; }
-            .hero-bottom .cta-wrap { justify-content: flex-start; }
+            .hero { padding: 2rem 0 3rem; }
+            .hero-inner { padding: 0 1.5rem; }
+            .hero-visual { width: 90%; height: 400px; top: 22%; filter: blur(24px) saturate(1.3); }
+            .hero-content { min-height: 56vh; gap: 1rem; }
+            .hero-h1-top { max-width: 100%; }
+            .hero-h1-bottom { max-width: 100%; text-align: left; align-self: flex-start; }
+            .hero-bottom { grid-template-columns: 1fr; gap: 1.75rem; align-items: start; margin-top: 2.5rem; }
+            .cta-circle-ring { width: 60px; height: 60px; min-width: 60px; font-size: 1.2rem; }
             .services, .about, .contact { padding: 4rem 0; }
             .service-item {
                 grid-template-columns: 50px 1fr;
@@ -430,17 +529,23 @@
     </header>
 
     <section class="hero">
-        <div class="container">
-            <div class="section-label"><span>01 // Uvod</span></div>
-            <h1>Vaša konkurenca izgleda bolje. <em>Popravimo to.</em></h1>
+        <div class="hero-visual"></div>
+        <div class="hero-inner">
+            <div class="hero-content">
+                <h1 class="hero-h1 hero-h1-top">Vaša konkurenca izgleda bolje.</h1>
+                <h1 class="hero-h1 hero-h1-bottom">Popravimo to.</h1>
+            </div>
             <div class="hero-bottom">
                 <p>Marketinška agencija za podjetja, ki želijo izstopati — z AI vsebinami, prodajnimi lijaki in kreativnimi kampanjami, ki dejansko prodajajo.</p>
-                <div class="cta-wrap">
-                    <a href="https://calendly.com/tadejsus/30min" target="_blank" rel="noopener noreferrer" class="cta">
-                        Rezerviraj si brezplačen 15-minuten klic
-                        <span class="cta-arrow">→</span>
-                    </a>
-                </div>
+                <a href="https://calendly.com/tadejsus/30min" target="_blank" rel="noopener noreferrer" class="cta-circle">
+                    <div class="cta-circle-ring">
+                        <span class="cta-circle-arrow">→</span>
+                    </div>
+                    <div class="cta-circle-text">
+                        <span class="cta-circle-label">Rezerviraj klic</span>
+                        <span class="cta-circle-sublabel">15-min, brezplačno</span>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
