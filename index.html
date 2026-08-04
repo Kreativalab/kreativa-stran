@@ -414,6 +414,167 @@
             .topbar-inner span:last-child { display: none; }
         }
     </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================
+   NASTAVITVE — spremeni samo te tri vrstice
+   ========================================================== */
+:root {
+  --kl-webhook: "https://zivasust.app.n8n.cloud/webhook/lead-chat";
+  --kl-privacy: "/politika-zasebnosti";
+
+  --kl-cream:  #F7F3EC;
+  --kl-ink:    #16130F;
+  --kl-accent: #E4573D;
+  --kl-muted:  #8A8177;
+  --kl-line:   rgba(22,19,15,.14);
+}
+
+.kl-wrap, .kl-wrap * { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* --- gumb --- */
+.kl-launch {
+  position: fixed; right: 24px; bottom: 24px; z-index: 9998;
+  display: flex; align-items: center; gap: 10px;
+  padding: 15px 24px; border: none; cursor: pointer;
+  background: var(--kl-ink); color: var(--kl-cream);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+  transition: background .25s ease, transform .25s ease;
+}
+.kl-launch:hover { background: var(--kl-accent); transform: translateY(-2px); }
+.kl-launch.kl-hidden { opacity: 0; pointer-events: none; transform: translateY(8px); }
+.kl-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--kl-accent);
+  animation: kl-pulse 2.4s ease-in-out infinite;
+}
+.kl-launch:hover .kl-dot { background: var(--kl-cream); }
+@keyframes kl-pulse { 0%,100% { opacity:1 } 50% { opacity:.35 } }
+
+/* --- panel --- */
+.kl-panel {
+  position: fixed; right: 24px; bottom: 24px; z-index: 9999;
+  width: 396px; max-width: calc(100vw - 32px);
+  height: 620px; max-height: calc(100vh - 48px);
+  background: var(--kl-cream);
+  border: 1px solid var(--kl-ink);
+  display: flex; flex-direction: column;
+  opacity: 0; pointer-events: none;
+  transform: translateY(16px) scale(.98);
+  transition: opacity .3s ease, transform .3s cubic-bezier(.2,.8,.3,1);
+  box-shadow: 12px 12px 0 rgba(22,19,15,.08);
+}
+.kl-panel.kl-open { opacity: 1; pointer-events: auto; transform: none; }
+
+/* --- glava --- */
+.kl-head {
+  padding: 18px 20px 16px; border-bottom: 1px solid var(--kl-ink);
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+}
+.kl-eyebrow {
+  font-family: 'IBM Plex Mono', monospace; font-size: 9.5px;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--kl-muted);
+  margin-bottom: 6px;
+}
+.kl-title {
+  font-family: 'Instrument Serif', serif; font-size: 25px;
+  line-height: 1.05; color: var(--kl-ink); font-weight: 400;
+}
+.kl-title em { color: var(--kl-accent); font-style: italic; }
+.kl-close {
+  background: none; border: none; cursor: pointer; padding: 2px 4px;
+  font-family: 'IBM Plex Mono', monospace; font-size: 17px;
+  color: var(--kl-muted); line-height: 1; transition: color .2s;
+}
+.kl-close:hover { color: var(--kl-accent); }
+
+/* --- pogovor --- */
+.kl-log {
+  flex: 1; overflow-y: auto; padding: 22px 20px;
+  display: flex; flex-direction: column; gap: 18px;
+  scrollbar-width: thin; scrollbar-color: var(--kl-line) transparent;
+}
+.kl-log::-webkit-scrollbar { width: 4px; }
+.kl-log::-webkit-scrollbar-thumb { background: var(--kl-line); }
+
+.kl-msg { display: flex; flex-direction: column; gap: 6px; animation: kl-in .35s ease both; }
+@keyframes kl-in { from { opacity:0; transform: translateY(6px) } to { opacity:1; transform:none } }
+
+.kl-who {
+  font-family: 'IBM Plex Mono', monospace; font-size: 9px;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--kl-muted);
+}
+.kl-body {
+  font-family: 'Instrument Sans', sans-serif; font-size: 14.5px;
+  line-height: 1.62; color: var(--kl-ink); white-space: pre-wrap;
+}
+.kl-msg.kl-bot { padding-left: 12px; border-left: 2px solid var(--kl-accent); }
+.kl-msg.kl-me  { padding-left: 12px; border-left: 2px solid var(--kl-line); }
+.kl-msg.kl-me .kl-body { color: #4A443D; }
+.kl-msg.kl-err { padding-left: 12px; border-left: 2px solid var(--kl-muted); }
+.kl-msg.kl-err .kl-body { color: var(--kl-muted); font-size: 13.5px; }
+
+/* --- pisanje --- */
+.kl-typing { display: flex; gap: 5px; padding: 4px 0 0 12px; }
+.kl-typing span {
+  width: 5px; height: 5px; border-radius: 50%; background: var(--kl-accent);
+  animation: kl-bounce 1.3s ease-in-out infinite;
+}
+.kl-typing span:nth-child(2) { animation-delay: .18s; }
+.kl-typing span:nth-child(3) { animation-delay: .36s; }
+@keyframes kl-bounce { 0%,60%,100% { opacity:.25; transform:none } 30% { opacity:1; transform: translateY(-4px) } }
+
+/* --- privolitev --- */
+.kl-consent {
+  padding: 14px 20px; border-top: 1px solid var(--kl-line);
+  background: rgba(228,87,61,.045);
+}
+.kl-consent.kl-done { display: none; }
+.kl-consent label {
+  display: flex; gap: 10px; align-items: flex-start; cursor: pointer;
+  font-family: 'Instrument Sans', sans-serif; font-size: 11.5px;
+  line-height: 1.5; color: #4A443D;
+}
+.kl-consent input {
+  appearance: none; -webkit-appearance: none;
+  width: 15px; height: 15px; flex-shrink: 0; margin-top: 1px;
+  border: 1px solid var(--kl-ink); background: transparent;
+  cursor: pointer; position: relative; transition: background .18s;
+}
+.kl-consent input:checked { background: var(--kl-accent); border-color: var(--kl-accent); }
+.kl-consent input:checked::after {
+  content: '✓'; position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--kl-cream); font-size: 10px;
+}
+.kl-consent a { color: var(--kl-accent); text-underline-offset: 2px; }
+
+/* --- vnos --- */
+.kl-form { border-top: 1px solid var(--kl-ink); display: flex; align-items: flex-end; }
+.kl-input {
+  flex: 1; border: none; outline: none; resize: none; background: transparent;
+  padding: 17px 16px; max-height: 110px;
+  font-family: 'Instrument Sans', sans-serif; font-size: 14px;
+  line-height: 1.5; color: var(--kl-ink);
+}
+.kl-input::placeholder { color: var(--kl-muted); }
+.kl-input:disabled { cursor: not-allowed; }
+.kl-send {
+  border: none; cursor: pointer; align-self: stretch;
+  padding: 0 22px; background: var(--kl-ink); color: var(--kl-cream);
+  font-family: 'IBM Plex Mono', monospace; font-size: 15px;
+  transition: background .2s;
+}
+.kl-send:hover:not(:disabled) { background: var(--kl-accent); }
+.kl-send:disabled { background: var(--kl-line); color: var(--kl-muted); cursor: not-allowed; }
+
+@media (max-width: 460px) {
+  .kl-panel { right: 8px; left: 8px; bottom: 8px; width: auto; height: calc(100vh - 16px); }
+  .kl-launch { right: 16px; bottom: 16px; }
+}
+</style>
 </head>
 <body>
     <div class="topbar">
@@ -529,5 +690,181 @@
             <span>kreativalab.si</span>
         </div>
     </footer>
+
+<!-- ===== OD TU NAPREJ KOPIRAJ NA SVOJO STRAN ===== -->
+<div class="kl-wrap">
+
+  <button class="kl-launch" id="klLaunch">
+    <span class="kl-dot"></span> Pogovor
+  </button>
+
+  <div class="kl-panel" id="klPanel" role="dialog" aria-label="Klepet">
+    <div class="kl-head">
+      <div>
+        <div class="kl-eyebrow">Nepremičnine · Ljubljana</div>
+        <div class="kl-title">Poiščimo vaš <em>dom</em></div>
+      </div>
+      <button class="kl-close" id="klClose" aria-label="Zapri">✕</button>
+    </div>
+
+    <div class="kl-log" id="klLog"></div>
+
+    <div class="kl-consent" id="klConsent">
+      <label>
+        <input type="checkbox" id="klAgree">
+        <span>Strinjam se z obdelavo osebnih podatkov za namen te poizvedbe.
+        <a href="#" id="klPrivacy" target="_blank" rel="noopener">Politika zasebnosti</a></span>
+      </label>
+    </div>
+
+    <div class="kl-form">
+      <textarea class="kl-input" id="klInput" rows="1"
+        placeholder="Najprej potrdite privolitev…" disabled></textarea>
+      <button class="kl-send" id="klSend" disabled aria-label="Pošlji">→</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var WEBHOOK = "https://zivasust.app.n8n.cloud/webhook/lead-chat";
+  var PRIVACY = "/politika-zasebnosti";
+
+  var POZDRAV = "Pozdravljeni! Pomagam vam najti pravo nepremičnino. Povejte mi, kaj iščete — stanovanje, hišo ali zemljišče?";
+
+  var launch  = document.getElementById('klLaunch');
+  var panel   = document.getElementById('klPanel');
+  var close   = document.getElementById('klClose');
+  var log     = document.getElementById('klLog');
+  var input   = document.getElementById('klInput');
+  var send    = document.getElementById('klSend');
+  var consent = document.getElementById('klConsent');
+  var agree   = document.getElementById('klAgree');
+
+  document.getElementById('klPrivacy').href = PRIVACY;
+
+  // Nova seja ob vsakem odprtju strani
+  var sessionId = 'web-' + Date.now().toString(36) + '-' +
+                  Math.random().toString(36).slice(2, 10);
+
+  var busy = false, started = false;
+
+  function ocisti(t) {
+    return String(t || '')
+      .replace(/\*\*(.*?)\*\*/g, '$1')
+      .replace(/(^|\s)\*(\S.*?\S)\*(?=\s|$)/g, '$1$2')
+      .replace(/^#{1,6}\s+/gm, '')
+      .replace(/<<<LEAD_DATA>>>[\s\S]*?<<<END>>>/g, '')
+      .trim();
+  }
+
+  function dodaj(vrsta, oznaka, besedilo) {
+    var el = document.createElement('div');
+    el.className = 'kl-msg kl-' + vrsta;
+    var w = document.createElement('div');
+    w.className = 'kl-who'; w.textContent = oznaka;
+    var b = document.createElement('div');
+    b.className = 'kl-body'; b.textContent = besedilo;
+    el.appendChild(w); el.appendChild(b);
+    log.appendChild(el);
+    log.scrollTop = log.scrollHeight;
+    return el;
+  }
+
+  function pisanje(on) {
+    var t = document.getElementById('klTyping');
+    if (on && !t) {
+      t = document.createElement('div');
+      t.id = 'klTyping'; t.className = 'kl-typing';
+      t.innerHTML = '<span></span><span></span><span></span>';
+      log.appendChild(t);
+      log.scrollTop = log.scrollHeight;
+    } else if (!on && t) { t.remove(); }
+  }
+
+  function odpri() {
+    panel.classList.add('kl-open');
+    launch.classList.add('kl-hidden');
+    if (!started) { started = true; dodaj('bot', 'Asistent', POZDRAV); }
+    if (agree.checked) input.focus();
+  }
+  function zapri() {
+    panel.classList.remove('kl-open');
+    launch.classList.remove('kl-hidden');
+  }
+
+  launch.addEventListener('click', odpri);
+  close.addEventListener('click', zapri);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && panel.classList.contains('kl-open')) zapri();
+  });
+
+  agree.addEventListener('change', function () {
+    var ok = agree.checked;
+    input.disabled = !ok;
+    send.disabled = !ok || busy || !input.value.trim();
+    input.placeholder = ok ? 'Napišite sporočilo…' : 'Najprej potrdite privolitev…';
+    if (ok) { consent.classList.add('kl-done'); input.focus(); }
+  });
+
+  input.addEventListener('input', function () {
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 110) + 'px';
+    send.disabled = busy || !input.value.trim() || !agree.checked;
+  });
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); poslji(); }
+  });
+  send.addEventListener('click', poslji);
+
+  function poslji() {
+    var besedilo = input.value.trim();
+    if (!besedilo || busy || !agree.checked) return;
+
+    dodaj('me', 'Vi', besedilo);
+    input.value = '';
+    input.style.height = 'auto';
+    busy = true; send.disabled = true; input.disabled = true;
+    pisanje(true);
+
+    var ctrl = new AbortController();
+    var timer = setTimeout(function () { ctrl.abort(); }, 45000);
+
+    fetch(WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sessionId: sessionId, message: besedilo }),
+      signal: ctrl.signal
+    })
+    .then(function (r) {
+      clearTimeout(timer);
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(function (data) {
+      pisanje(false);
+      var odgovor = ocisti(data && data.reply);
+      dodaj('bot', 'Asistent', odgovor || 'Oprostite, odgovora ni bilo mogoče prikazati.');
+    })
+    .catch(function (err) {
+      clearTimeout(timer);
+      pisanje(false);
+      dodaj('err', 'Sistem',
+        'Povezave trenutno ni bilo mogoče vzpostaviti. Poskusite znova ali nas pokličite.');
+      console.error('[lead-chat]', err);
+    })
+    .then(function () {
+      busy = false;
+      input.disabled = false;
+      send.disabled = !input.value.trim();
+      input.focus();
+    });
+  }
+})();
+</script>
+<!-- ===== KONEC ===== -->
+
 </body>
 </html>
