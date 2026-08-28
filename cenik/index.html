@@ -392,6 +392,30 @@
             max-width: 500px;
         }
 
+        .price-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            margin-top: 0.5rem;
+            max-width: 500px;
+        }
+
+        .price-features li {
+            position: relative;
+            padding-left: 1.3rem;
+            color: var(--ink-muted);
+            font-size: 0.9rem;
+            line-height: 1.45;
+        }
+
+        .price-features li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
         .price-meta {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.7rem;
@@ -781,6 +805,24 @@
                     </div>
                     <div class="price-value">
                         <span class="price-custom">Po dogovoru</span>
+                    </div>
+                </li>
+
+                <li class="price-item">
+                    <div class="price-number">09</div>
+                    <div class="price-content">
+                        <h3 class="price-name">Brand / po meri</h3>
+                        <ul class="price-features">
+                            <li>Projektna produkcija za blagovne znamke</li>
+                            <li>Oglaševalski videi z zvokom in montažo</li>
+                            <li>Prilagojeno vizualni identiteti znamke</li>
+                            <li>Pravice do uporabe na vseh kanalih</li>
+                            <li>Cena po obsegu projekta</li>
+                        </ul>
+                    </div>
+                    <div class="price-value">
+                        <span class="price-prefix">od</span>
+                        <span class="price-amount">€490</span>
                     </div>
                 </li>
 
